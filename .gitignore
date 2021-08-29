@@ -1,2 +1,3 @@
 node_modules
 deploy-aci.yaml
+docker-compose.yml

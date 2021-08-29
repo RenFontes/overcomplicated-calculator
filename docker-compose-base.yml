@@ -1,0 +1,30 @@
+# change name and add passwords
+version: '3'
+services:
+  azure-occalc-back:
+    build: .
+    image: occalc.azurecr.io/azure-occalc-back
+    container_name: azure-occalc-back
+    environment: 
+      # add password here
+      POSTGRES_PASSWORD:
+    ports:
+      - "8080:8080"
+  azure-occalc-db:
+    image: "postgres:13.4"
+    container_name: azure-occalc-db
+    environment: 
+      # add password here
+      POSTGRES_PASSWORD:
+    volumes:
+      - db-data:/oc-calc
+    ports:
+      - "5432:5432"
+  
+volumes:
+  db-data:
+    driver: azure_file
+    driver_opts:
+      share_name: occalc-db-data
+      storage_account_name: occalcdata
+

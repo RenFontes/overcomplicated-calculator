@@ -1,0 +1,23 @@
+version: '3'
+services:
+  occalc-db:
+    image: "postgres:13.4"
+    container_name: occalc-db
+    environment: 
+      POSTGRES_PASSWORD: dev_password
+    volumes:
+      - db-data:/oc-calc
+    ports:
+      - "5432:5432"
+  occalc-back:
+    build: .
+    env_file: .env.dev
+    container_name: occalc-back
+    domainname: occalc-dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/app
+  
+volumes:
+  db-data:

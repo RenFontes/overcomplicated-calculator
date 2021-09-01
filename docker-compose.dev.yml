@@ -1,0 +1,12 @@
+version: '3'
+services:
+  occalc-back:
+    env_file: .env.dev
+    volumes:
+      - ./:/app
+  occalc-db:
+    environment: 
+      POSTGRES_PASSWORD: dev_password
+  
+volumes:
+  db-data:

@@ -1,3 +1,4 @@
 node_modules
-deploy-aci.yaml
-.env
+docker-compose-cloud.yml
+.env.cloud
+docker-compose.cloud.yml

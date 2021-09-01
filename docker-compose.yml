@@ -1,23 +1,24 @@
 version: '3'
 services:
+  occalc-back:
+    build: .
+    depends_on:
+      - occalc-db
+    container_name: occalc-back
+    ports:
+      - "8080:8080"
+    deploy:
+      restart_policy:
+        condition: on-failure
   occalc-db:
     image: "postgres:13.4"
     container_name: occalc-db
     environment: 
       POSTGRES_PASSWORD: dev_password
     volumes:
-      - db-data:/oc-calc
+      - db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-  occalc-back:
-    build: .
-    env_file: .env.dev
-    container_name: occalc-back
-    domainname: occalc-dev
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./:/app
   
 volumes:
   db-data:
